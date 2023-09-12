@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-image: url("../img/3.jpg");
+        overflow: hidden;
+        background-size: cover;
+    }
+
+    .container {
+        width: 600px;
+        height: 350px;
+        margin-top: 60px;
+        position: relative;
+/* “perspective: 1000px;” 是一段CSS样式代码，它用于定义3D转换元素的透视视图（perspective view）。
+通过指定透视视图的大小，可以影响元素在3D空间中的视觉感知。具体而言，这段代码将透视视图的大小设置为1000像素。 */
+        perspective: 1000px;
+        z-index: 1;
+    }
+
+    .box {
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+        transform: translateY(0) translateZ(-700px);
+        animation: action 10s cubic-bezier(0.77, 0, 0.125, 1) infinite;
+        z-index: 1;
+    }
+
+    .card {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+    }
+
+    .card img {
+        width: 100%;
+        height: 100%;
+        border-radius: 25px;
+        z-index: 1;
+    }
+
+    .card:nth-child(1) {
+        transform: rotateY(0) translateZ(700px);
+    }
+
+    .card:nth-child(2) {
+        transform: rotateY(72deg) translateZ(700px);
+    }
+
+    .card:nth-child(3) {
+        transform: rotateY(144deg) translateZ(700px);
+    }
+
+    .card:nth-child(4) {
+        transform: rotateY(216deg) translateZ(700px);
+    }
+
+    .card:nth-child(5) {
+        transform: rotateY(296deg) translateZ(700px);
+    }
+
+    @keyframes action {
+        0% {
+            transform: translateZ(-700px) rotateY(0);
+        }
+
+        20% {
+            transform: translateZ(-700px) rotateY(-72deg);
+        }
+
+        40% {
+            transform: translateZ(-700px) rotateY(-144deg);
+        }
+
+        60% {
+            transform: translateZ(-700px) rotateY(-216deg);
+        }
+
+        80% {
+            transform: translateZ(-700px) rotateY(-296deg);
+        }
+
+        100% {
+            transform: translateZ(-700px) rotateY(-360deg);
+
+        }
+    }
+
+    /* 新增代码 */
+    .cube-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    /* 增加一层包裹魔方的容器 */
+    .cube-wrapper {
+        width: 200px;
+        height: 200px;
+        perspective: 1000px;
+        transform: translateY(32px);
+        z-index: -1;
+    }
+
+    .cube {
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+        animation: rotate 5s infinite linear;
+    }
+
+    .face {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        background-color: rgba(255, 255, 255, 0.8);
+        border: 1px solid #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+    }
+
+    .front {
+        background-image: url("../img/1.jpg");
+        overflow: hidden;
+        background-size: cover;
+        transform: translateZ(100px);
+    }
+
+    .back {
+        background-image: url("../img/2.jpg");
+        overflow: hidden;
+        background-size: cover;
+        transform: rotateY(180deg) translateZ(100px);
+    }
+
+    .right {
+        background-image: url("../img/4.png");
+        overflow: hidden;
+        background-size: cover;
+        transform: rotateY(90deg) translateZ(100px);
+    }
+
+    .left {
+        background-image: url("../img/5.jpg");
+        overflow: hidden;
+        background-size: cover;
+        transform: rotateY(-90deg) translateZ(100px);
+    }
+
+    .top {
+        background-image: url("../img/6.jpg");
+        overflow: hidden;
+        background-size: cover;
+        transform: rotateX(90deg) translateZ(100px);
+    }
+
+    .bottom {
+        background-image: url("../img/3.jpg");
+        overflow: hidden;
+        background-size: cover;
+        transform: rotateX(-90deg) translateZ(100px);
+    }
+
+    @keyframes rotate {
+        0% {
+            transform: rotateX(0deg) rotateY(0deg);
+        }
+
+        100% {
+            transform: rotateX(360deg) rotateY(360deg);
+        }
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="box">
+            <div class="card">
+                <img src="../img/1.jpg" alt="">
+            </div>
+            <div class="card">
+                <img src="../img/2.jpg" alt="">
+            </div>
+            <div class="card">
+                <img src="../img/4.png" alt="">
+            </div>
+            <div class="card">
+                <img src="../img/5.jpg" alt="">
+            </div>
+            <div class="card">
+                <img src="../img/6.jpg" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="cube-container">
+        <div class="cube-wrapper">
+            <div class="cube">
+                <div class="face front"></div>
+                <div class="face back"></div>
+                <div class="face right"></div>
+                <div class="face left"></div>
+                <div class="face top"></div>
+                <div class="face bottom"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
